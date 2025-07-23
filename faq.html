@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 | 山田総合法務事務所</title>
+    <meta name="description" content="山田総合法務事務所によく寄せられる質問と回答。相談の流れ、料金、必要書類など、お客様の疑問にお答えします。">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <div class="header-wrapper">
+                <a href="index.html" class="logo">山田総合法務事務所</a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="services.html">業務内容</a></li>
+                        <li><a href="pricing.html">料金案内</a></li>
+                        <li><a href="profile.html">代表プロフィール</a></li>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <section>
+            <div class="container">
+                <h1>よくある質問</h1>
+                <p class="text-center mb-40">お客様からよくいただくご質問をまとめました。<br>こちらに記載のない内容については、お気軽にお問い合わせください。</p>
+            </div>
+        </section>
+
+        <!-- 相談について -->
+        <section style="background-color: #f8f9fa;">
+            <div class="container">
+                <h2>ご相談について</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>初回相談は本当に無料ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>はい、初回相談は60分まで完全無料です。お客様のお悩みをじっくりお聞きし、解決方法のご提案と概算費用のご説明をいたします。無理な勧誘は一切ございませんので、安心してご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>相談の予約方法を教えてください</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>お電話（03-1234-5678）またはお問い合わせフォームからご予約いただけます。お電話の場合は平日9:00〜18:00、フォームは24時間受付しております。ご希望の日時を3つほどお知らせいただければ、調整の上ご連絡いたします。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>オンライン相談は可能ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>はい、Zoom等を使用したオンライン相談も承っております。遠方の方や、ご来所が難しい方もお気軽にご相談ください。事前に接続テストも可能です。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>相談時に必要な持ち物はありますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ご相談内容に関連する書類があればお持ちください。例えば、会社設立なら事業計画書、相続なら戸籍謄本や固定資産税納税通知書など。ただし、初回相談では詳しい書類がなくても問題ありません。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>土日祝日の相談は可能ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>土曜日は10:00〜15:00で事前予約制にて承っております。日曜・祝日は原則休業ですが、緊急の場合はご相談ください。平日夜間（18:00以降）の相談も事前予約で対応可能です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 料金について -->
+        <section>
+            <div class="container">
+                <h2>料金について</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>料金はいつ支払うのですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>原則として、業務完了後にご請求書を発行いたします。ただし、長期にわたる案件や高額な案件の場合は、着手金をいただく場合があります。お支払い時期については、事前にご説明・ご相談いたします。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>見積もりは無料ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>はい、お見積りは無料です。ご相談内容をお聞きした上で、詳細なお見積書を作成いたします。料金にご納得いただいてからのご依頼となりますので、安心してご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>追加料金が発生することはありますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>基本的にお見積り通りの料金となりますが、当初の想定を超える業務が発生した場合は、事前にご相談の上、追加料金をいただく場合があります。必ず事前にご説明し、ご了承をいただいてから作業を進めます。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>分割払いは可能ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>はい、ご相談に応じて分割払いも承っております。お客様のご事情に合わせて柔軟に対応いたしますので、お気軽にご相談ください。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 各業務について -->
+        <section style="background-color: #f8f9fa;">
+            <div class="container">
+                <h2>各業務について</h2>
+                
+                <h3 class="mb-20">会社設立</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>会社設立にはどのくらいの期間がかかりますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>通常、ご依頼から設立完了まで1〜2週間程度です。お急ぎの場合は最短3営業日での設立も可能です。定款作成、公証人認証、登記申請まですべて当事務所で対応いたします。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>株式会社と合同会社、どちらがよいですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>事業規模、将来の資金調達計画、経営体制などによって最適な形態は異なります。株式会社は信用度が高く資金調達しやすい一方、合同会社は設立費用が安く経営の自由度が高いという特徴があります。お客様の事業計画をお聞きして、最適な形態をご提案いたします。</p>
+                    </div>
+                </div>
+
+                <h3 class="mb-20 mt-40">相続・遺言</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>相続手続きはいつまでに行う必要がありますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>相続税の申告は相続開始から10ヶ月以内、相続放棄は3ヶ月以内など、手続きによって期限が異なります。期限を過ぎるとペナルティが発生する場合もありますので、早めのご相談をお勧めします。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>遺言書は自分で作成できますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>自筆証書遺言は自分で作成できますが、形式不備で無効になるリスクがあります。公正証書遺言なら確実で、紛失の心配もありません。当事務所では遺言内容のアドバイスから公証役場での手続きまでサポートいたします。</p>
+                    </div>
+                </div>
+
+                <h3 class="mb-20 mt-40">許認可</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>建設業許可の要件を教えてください</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>主な要件は、(1)経営業務の管理責任者がいること、(2)専任技術者がいること、(3)財産的基礎（500万円以上）があること、(4)誠実性があること、(5)欠格要件に該当しないこと、です。詳細は業種によって異なりますので、個別にご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>許可申請が却下されることはありますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>要件を満たしていない場合や書類に不備がある場合は却下される可能性があります。当事務所では事前に要件確認を徹底し、98%以上の許可取得率を誇っています。万が一の場合も再申請のサポートをいたします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- その他 -->
+        <section>
+            <div class="container">
+                <h2>その他のご質問</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>事務所の場所はどこですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>東京都千代田区千代田1-1-1 山田ビル5階にございます。JR東京駅から徒歩5分、地下鉄大手町駅から徒歩3分とアクセス良好です。1階にコンビニが入っているビルです。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>駐車場はありますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>専用駐車場はございませんが、ビル内に有料駐車場がございます。また、近隣にもコインパーキングが複数ございます。駐車料金の一部補助制度もございますので、お車でお越しの際はお申し付けください。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>対応エリアを教えてください</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>東京都全域を中心に、神奈川県、千葉県、埼玉県も対応しております。その他の地域についても、内容によってはオンラインでの対応が可能です。まずはご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>秘密は守られますか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>もちろんです。行政書士・税理士・司法書士には法律上の守秘義務があります。お客様からお預かりした情報は厳重に管理し、ご本人の同意なく第三者に開示することは一切ございません。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>顧問契約のメリットは何ですか？</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>顧問契約をご締結いただくと、(1)優先的な対応、(2)各種手続きの割引料金適用、(3)定期的な法改正情報の提供、(4)経営相談の随時対応、などのメリットがあります。月額33,000円からご用意しております。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="background-color: #1e3a8a; color: #fff;">
+            <div class="container text-center">
+                <h2 style="color: #fff;">ご不明な点はお気軽にお問い合わせください</h2>
+                <p style="font-size: 18px; margin-bottom: 30px;">こちらに記載のない内容でも、どんなことでもご相談ください。</p>
+                <a href="contact.html" class="btn" style="background-color: #fff; color: #1e3a8a;">お問い合わせはこちら</a>
+                <p style="margin-top: 20px;">お電話でのお問い合わせ<br>
+                <span style="font-size: 24px; font-weight: bold;">03-1234-5678</span><br>
+                平日 9:00〜18:00</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>山田総合法務事務所</h3>
+                    <p>〒100-0001<br>
+                    東京都千代田区千代田1-1-1<br>
+                    山田ビル5階</p>
+                    <p>TEL: 03-1234-5678<br>
+                    FAX: 03-1234-5679<br>
+                    Email: info@yamada-law.jp</p>
+                </div>
+                <div class="footer-section">
+                    <h3>営業時間</h3>
+                    <p>平日: 9:00〜18:00<br>
+                    土曜: 10:00〜15:00（要予約）<br>
+                    日曜・祝日: 休業</p>
+                    <p>※緊急のご相談は時間外も対応可能です</p>
+                </div>
+                <div class="footer-section">
+                    <h3>アクセス</h3>
+                    <p>JR東京駅 徒歩5分<br>
+                    地下鉄大手町駅 徒歩3分</p>
+                    <p><a href="https://maps.google.com/?q=東京都千代田区千代田1-1-1" target="_blank">アクセスマップを見る</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 山田総合法務事務所. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const allItems = document.querySelectorAll('.accordion-item');
+            
+            // 他のアコーディオンを閉じる
+            allItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // クリックしたアコーディオンを開閉
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
