@@ -4,217 +4,979 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>山田総合法務事務所 | 行政書士・税理士・司法書士</title>
-<meta name="description" content="法人設立・許認可・税務・相続まで、ワンストップで対応する総合法務事務所のサンプルサイトです。">
+<meta name="description" content="法人設立・許認可・税務・相続・登記まで、行政書士・税理士・司法書士がひとつの窓口で対応する総合法務事務所のデザインサンプルサイトです。初回相談60分無料。">
+<meta property="og:title" content="山田総合法務事務所 | 行政書士・税理士・司法書士">
+<meta property="og:description" content="法人設立・許認可・税務・相続・登記まで、三士業がひとつの窓口で。初回相談60分無料。">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;800&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — デザインDNAキット レシピ②「かっちり」（スイス・グリッド）
+   ほぼ白 / 濃紺墨 / アクセントは士業向けに「深い紺」へ差替（1本勝負・角丸0）
+   ============================================================ */
+:root {
+  --paper:       #FAFAF8;   /* 背景 */
+  --paper-2:     #F1F1EC;   /* 章区切り用の第2背景 */
+  --ink:         #101820;   /* 濃紺墨（文字） */
+  --ink-soft:    #39424C;   /* 本文 */
+  --ink-mute:    #5E656E;   /* メタ情報 */
+  --accent:      #1E3A8A;   /* 深い紺（面・図形用）。旧テンプレのブランド色を継承 */
+  --accent-text: #23409A;   /* 小さい文字用の同系色（paper上でコントラスト4.5:1以上） */
+  --hairline:    #D8D8D2;   /* 罫線 */
+  --line-dark:   rgba(250,250,248,.16); /* ダーク面の罫線 */
+
+  --disp: "Noto Sans JP", sans-serif;    /* 見出し（900で使う） */
+  --en:   "Space Grotesk", sans-serif;   /* 英語display・巨大数字 */
+  --sans: "Noto Sans JP", sans-serif;    /* 本文（400） */
+  --mono: "Space Mono", monospace;       /* キッカー・表・メタ */
+
+  --ease: cubic-bezier(.22,1,.36,1);
+  --max-w: 1080px;
+  --pad: clamp(20px, 5vw, 48px);
+  --header-h: 60px;
+}
+
+/* ---------- リセット・ベース ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+img, svg { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+.sp { display: none; }
+@media (max-width: 640px) { .pc { display: none; } .sp { display: inline; } }
+
+/* 写真の共通ルール：角0＋罫線枠・トーン統一フィルタ */
+.ph { border: 1px solid var(--ink); }
+.ph img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.95) contrast(1.02); }
+.ph__cap {
+  border-top: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 10px 14px;
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+  color: var(--ink-soft);
+}
+.ph__cap .fig-no { color: var(--accent-text); font-weight: 700; }
+
+/* ============================================================
+   共通部品
+   ============================================================ */
+.wrap { max-width: calc(var(--max-w) + var(--pad) * 2); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+.section { padding-top: clamp(90px, 13vw, 150px); padding-bottom: clamp(90px, 13vw, 150px); }
+.section__head { margin-bottom: clamp(44px, 6vw, 72px); }
+
+/* キッカー：罫線＋mono＋広字間・通し番号 */
+.kicker {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 18px;
+}
+@media (max-width: 480px) { .kicker { font-size: 10px; letter-spacing: .2em; } }
+.kicker::before { content: ""; width: 30px; height: 1px; background: var(--accent); flex-shrink: 0; }
+
+.sec-title {
+  font-family: var(--disp); font-weight: 900;
+  font-size: clamp(28px, 4.2vw, 46px);
+  line-height: 1.4; letter-spacing: .01em;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+.sec-lead { margin-top: 20px; color: var(--ink-soft); max-width: 620px; }
+
+/* mono英字の小ラベル */
+.en-label { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* セクション末尾の「詳細ページへ」リンク */
+.more {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  margin-top: clamp(28px, 4vw, 40px);
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+  color: var(--accent-text); font-weight: 700;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 4px;
+}
+.more .arw { transition: transform .3s var(--ease); }
+.more:hover .arw { transform: translateX(4px) translateY(-4px); }
+
+/* ボタン：角丸0。塗り＝紺×紙文字／枠＝墨1px */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 30px;
+  font-family: var(--disp); font-weight: 700; font-size: 14px; letter-spacing: .06em;
+  border: 1px solid var(--ink);
+  transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.btn .arw { font-family: var(--mono); font-weight: 400; transition: transform .3s var(--ease); }
+.btn:hover .arw { transform: translateX(4px) translateY(-4px); }
+.btn--fill { background: var(--accent); border-color: var(--accent); color: #FAFAF8; }
+.btn--fill:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn--line { background: transparent; color: var(--ink); }
+.btn--line:hover { background: var(--ink); color: var(--paper); }
+.btn--paper { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.btn--paper:hover { background: var(--ink); border-color: var(--paper); color: var(--paper); }
+
+/* スクロールリビール：直線的で速い */
+.reveal {
+  opacity: 0; transform: translateX(-18px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   固定ヘッダー
+   ============================================================ */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  height: var(--header-h);
+  background: rgba(250,250,248,.94);
+  border-bottom: 1px solid var(--ink);
+}
+.site-header__in {
+  max-width: calc(var(--max-w) + var(--pad) * 2); margin: 0 auto;
+  padding: 0 var(--pad);
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { display: flex; align-items: baseline; gap: 12px; }
+.brand__mark { width: 12px; height: 12px; background: var(--accent); align-self: center; flex-shrink: 0; }
+.brand__ja { font-family: var(--disp); font-weight: 900; font-size: 16px; letter-spacing: .04em; }
+.brand__en { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: var(--ink-mute); }
+.gnav { display: flex; align-items: center; gap: clamp(16px, 2.6vw, 30px); }
+.gnav a:not(.btn) {
+  position: relative;
+  font-size: 13px; font-weight: 500; letter-spacing: .08em;
+  padding: 4px 0;
+}
+.gnav a:not(.btn)::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s var(--ease);
+}
+.gnav a:not(.btn):hover::after { transform: scaleX(1); }
+.gnav .num { font-family: var(--mono); font-size: 10px; color: var(--accent-text); margin-right: 4px; }
+.gnav .btn { padding: 9px 18px; font-size: 12px; }
+@media (max-width: 960px) { .gnav a:not(.btn) { display: none; } }
+@media (max-width: 480px) { .site-header .brand__en { display: none; } }
+
+/* ============================================================
+   ヒーロー：罫線で画面分割・左に巨大見出し・右に事務所写真＋FIG.01
+   ============================================================ */
+.hero { border-bottom: 1px solid var(--ink); padding-top: var(--header-h); }
+.hero__grid {
+  max-width: calc(var(--max-w) + var(--pad) * 2); margin: 0 auto;
+  display: grid; grid-template-columns: 1.12fr .88fr;
+  min-height: calc(92svh - var(--header-h));
+}
+.hero__left {
+  padding: clamp(56px, 9vw, 110px) clamp(28px, 4vw, 56px) clamp(44px, 6vw, 72px) var(--pad);
+  display: flex; flex-direction: column; justify-content: center;
+}
+/* H1 clamp設計：最長行9字「手続きの、その先の」＋0.5字余裕 → 列幅約560px ÷ 9.5 ≒ 59px上限 */
+.hero__title {
+  font-family: var(--disp); font-weight: 900;
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1.34; letter-spacing: .01em;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+.ht-line {
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  transform: translateX(-16px);
+  animation: cutIn .55s var(--ease) both;
+}
+.ht-line:nth-child(2) { animation-delay: .12s; }
+@keyframes cutIn { to { clip-path: inset(0 -2% 0 0); transform: none; } }
+.hero__lead {
+  margin-top: 30px; max-width: 480px; color: var(--ink-soft);
+  animation: cutIn .55s .38s var(--ease) both;
+  clip-path: inset(0 100% 0 0); transform: translateX(-16px);
+}
+.hero__actions {
+  margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap;
+  animation: cutIn .55s .5s var(--ease) both;
+  clip-path: inset(0 100% 0 0); transform: translateX(-16px);
+}
+
+/* 右パネル：写真＋墨レイヤーの銘板＋monoインデックス */
+.hero__right {
+  position: relative;
+  border-left: 1px solid var(--ink);
+  display: flex; flex-direction: column;
+  animation: figIn .6s .3s var(--ease) both;
+  clip-path: inset(0 0 0 100%);
+}
+@keyframes figIn { to { clip-path: inset(0); } }
+.hero__photo { position: relative; flex: 1; min-height: 320px; overflow: clip; }
+.hero__photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.95) contrast(1.02);
+}
+/* 文字乗せ部の墨半透明レイヤー（写真の最明部でもコントラスト4.5:1を確保する濃度） */
+.hero__plate {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: rgba(16,24,32,.85);
+  padding: 12px clamp(16px, 3vw, 28px);
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(250,250,248,.92);
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.hero__figindex {
+  border-top: 1px solid var(--ink);
+  padding: 14px clamp(20px, 3vw, 32px);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  color: var(--ink-soft);
+  background: var(--paper);
+}
+.hero__figindex .fig-no { color: var(--accent-text); font-weight: 700; }
+
+/* ヒーロー下の帯：選ばれる理由3つ（mono罫線ストリップ） */
+.hero__strip {
+  border-top: 1px solid var(--ink);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.hero__strip > div {
+  padding: 16px var(--pad);
+  font-size: 13px; letter-spacing: .04em;
+  color: var(--ink-soft);
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+.hero__strip > div + div { border-left: 1px solid var(--hairline); }
+.hero__strip .k {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent-text); flex-shrink: 0; font-weight: 700;
+}
+@media (max-width: 880px) {
+  .hero__grid { grid-template-columns: 1fr; min-height: 0; }
+  .hero__left { padding-top: clamp(56px, 12vw, 80px); }
+  .hero__right { border-left: none; border-top: 1px solid var(--ink); }
+  .hero__strip { grid-template-columns: 1fr; }
+  .hero__strip > div + div { border-left: none; border-top: 1px solid var(--hairline); }
+}
+
+/* ============================================================
+   01 業務内容 — border共有の表組みカードグリッド（6業務）
+   ============================================================ */
+.svc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+.svc {
+  position: relative;
+  padding: clamp(24px, 3.4vw, 38px);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  transition: background .3s var(--ease);
+}
+.svc:nth-child(3n) { border-right: none; }
+.svc:nth-child(n+4) { border-bottom: none; }
+.svc:hover { background: #FFFFFF; }
+.svc__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.svc__no {
+  font-family: var(--en); font-weight: 700;
+  font-size: clamp(32px, 4vw, 46px); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1.3px var(--hairline);
+  transition: -webkit-text-stroke-color .3s var(--ease);
+}
+.svc:hover .svc__no { -webkit-text-stroke-color: var(--accent); }
+.svc__icon { flex-shrink: 0; }
+.svc__icon svg { width: 42px; height: 42px; stroke: var(--ink); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.svc__icon .acc { stroke: var(--accent); }
+.svc__en { display: block; margin-bottom: 8px; }
+.svc__title { font-family: var(--disp); font-weight: 900; font-size: clamp(18px, 2.2vw, 21px); line-height: 1.5; letter-spacing: .02em; }
+.svc__text { margin-top: 10px; font-size: 13.5px; color: var(--ink-soft); }
+.svc__spec {
+  margin-top: 16px; padding-top: 12px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-mute);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+.svc__spec .val { color: var(--accent-text); font-weight: 700; }
+@media (max-width: 880px) {
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .svc { border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .svc:nth-child(2n) { border-right: none; }
+  .svc:nth-child(n+5) { border-bottom: none; }
+}
+@media (max-width: 640px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc { border-right: none !important; border-bottom: 1px solid var(--hairline) !important; }
+  .svc:last-child { border-bottom: none !important; }
+}
+
+/* 業務セクションの写真帯（横長FIG） */
+.svc-photo { margin-top: clamp(28px, 4vw, 44px); }
+.svc-photo .ph__img { aspect-ratio: 21 / 9; overflow: clip; }
+@media (max-width: 640px) { .svc-photo .ph__img { aspect-ratio: 3 / 2; } }
+
+/* ============================================================
+   02 料金の目安 — mono表（第2背景・pricing.htmlの要約）
+   ============================================================ */
+.sec-fee { background: var(--paper-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.fee-scroll { overflow-x: auto; }
+.fee { min-width: 680px; border-top: 2px solid var(--ink); }
+.fee__row {
+  display: grid; grid-template-columns: 1.7fr .8fr 1.1fr 1.5fr;
+  gap: 16px; align-items: baseline;
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .3s var(--ease), padding-left .3s var(--ease);
+}
+.fee__row:not(.fee__row--head):hover { background: #FFFFFF; padding-left: 14px; }
+.fee__row--head {
+  padding: 10px 4px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-mute);
+  border-bottom: 1px solid var(--ink);
+}
+.fee__name { font-weight: 700; font-size: 14px; letter-spacing: .02em; }
+.fee__name .en-label { display: block; margin-top: 2px; }
+.fee__who { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--ink-mute); }
+.fee__price { font-family: var(--en); font-weight: 700; font-size: 16px; color: var(--accent-text); letter-spacing: 0; }
+.fee__price .ja { font-family: var(--disp); font-size: 12.5px; letter-spacing: .04em; }
+.fee__note { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--ink-soft); }
+.fee-foot {
+  margin-top: 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-mute);
+  display: flex; gap: 24px; flex-wrap: wrap; line-height: 1.7;
+}
+
+/* ============================================================
+   03 代表プロフィール — 非対称2カラム（写真＋罫線リスト）
+   ============================================================ */
+.prof-grid { display: grid; grid-template-columns: .42fr .58fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+.prof-photo { position: sticky; top: calc(var(--header-h) + 32px); }
+.prof-name { margin-top: 26px; font-family: var(--disp); font-weight: 900; font-size: clamp(22px, 2.6vw, 28px); letter-spacing: .04em; line-height: 1.4; }
+.prof-name .en { display: block; font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: .22em; color: var(--ink-mute); margin-top: 6px; text-transform: uppercase; }
+.prof-msg { color: var(--ink-soft); }
+.prof-msg + .prof-msg { margin-top: 14px; }
+.quals { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+.qual {
+  border: 1px solid var(--ink);
+  padding: 7px 16px;
+  font-family: var(--disp); font-weight: 700; font-size: 13px; letter-spacing: .1em;
+}
+.qual .en-label { margin-left: 8px; color: var(--accent-text); }
+.bio { list-style: none; margin-top: 34px; border-top: 2px solid var(--ink); }
+.bio li {
+  display: grid; grid-template-columns: 86px 1fr; gap: 18px;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 13.5px;
+  transition: background .3s var(--ease), padding-left .3s var(--ease);
+}
+.bio li:hover { background: #FFFFFF; padding-left: 14px; }
+.bio .yr { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--accent-text); padding-top: 3px; }
+@media (max-width: 880px) {
+  .prof-grid { grid-template-columns: 1fr; }
+  .prof-photo { position: relative; max-width: 420px; }
+}
+@media (max-width: 480px) {
+  .bio li { grid-template-columns: 1fr; gap: 2px; }
+  .bio .yr { padding-top: 0; }
+}
+
+/* ============================================================
+   04 ご相談の流れ — 左sticky（写真）＋右ステップ罫線リスト
+   ============================================================ */
+.flow-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
+.flow-left { position: sticky; top: calc(var(--header-h) + 32px); }
+.flow-left .ph { margin-top: 30px; }
+.flow-left .ph__img { aspect-ratio: 3 / 2; overflow: clip; }
+.flow { border-top: 2px solid var(--ink); }
+.flow__row {
+  display: grid; grid-template-columns: 92px 1fr; gap: clamp(16px, 3vw, 34px);
+  align-items: baseline;
+  padding: clamp(22px, 3vw, 30px) 4px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .3s var(--ease), padding-left .3s var(--ease);
+}
+.flow__row:hover { background: #FFFFFF; padding-left: 14px; }
+.flow__no { font-family: var(--en); font-weight: 700; font-size: clamp(22px, 3vw, 30px); line-height: 1; color: var(--accent); }
+.flow__no .lbl { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: var(--ink-mute); margin-bottom: 6px; }
+.flow__title { font-family: var(--disp); font-weight: 900; font-size: clamp(17px, 2vw, 20px); letter-spacing: .03em; }
+.flow__text { margin-top: 8px; font-size: 14px; color: var(--ink-soft); max-width: 560px; }
+@media (max-width: 880px) {
+  .flow-grid { grid-template-columns: 1fr; }
+  .flow-left { position: relative; }
+  .flow-left .ph { max-width: 520px; }
+}
+@media (max-width: 480px) {
+  .flow__row { grid-template-columns: 1fr; gap: 8px; }
+  .flow__no { display: flex; align-items: baseline; gap: 10px; }
+  .flow__no .lbl { margin-bottom: 0; }
+}
+
+/* ============================================================
+   05 よくある質問 — 罫線アコーディオン（第2背景）
+   ============================================================ */
+.sec-faq { background: var(--paper-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.faq { border-top: 2px solid var(--ink); max-width: 780px; }
+.faq details { border-bottom: 1px solid var(--hairline); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: grid; grid-template-columns: 40px 1fr 24px; gap: 16px; align-items: baseline;
+  padding: 22px 4px;
+  transition: background .3s var(--ease), padding-left .3s var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { background: #FFFFFF; padding-left: 12px; }
+.faq summary .q { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--accent-text); }
+.faq summary .qt { font-family: var(--disp); font-weight: 700; font-size: 15px; letter-spacing: .02em; line-height: 1.6; }
+.faq summary .sign { justify-self: end; font-family: var(--mono); font-size: 18px; color: var(--ink-mute); transition: transform .3s var(--ease); line-height: 1; }
+.faq details[open] summary .sign { transform: rotate(45deg); color: var(--accent-text); }
+.faq__a { padding: 0 4px 24px calc(40px + 16px); font-size: 14px; color: var(--ink-soft); max-width: 640px; }
+@media (max-width: 480px) {
+  .faq summary { grid-template-columns: 1fr 24px; }
+  .faq summary .q { grid-column: 1 / -1; }
+  .faq__a { padding-left: 4px; }
+}
+
+/* ============================================================
+   06 アクセス — 写真＋罫線リスト（事務所概要）
+   ============================================================ */
+.acc-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.acc-photo .ph__img { aspect-ratio: 16 / 10; overflow: clip; }
+.co-list { list-style: none; border-top: 2px solid var(--ink); }
+.co-list li {
+  display: grid; grid-template-columns: 108px 1fr; gap: 16px;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 13.5px;
+  transition: background .3s var(--ease), padding-left .3s var(--ease);
+}
+.co-list li:hover { background: #FFFFFF; padding-left: 14px; }
+.co-list .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--ink-mute); padding-top: 5px; text-transform: uppercase; }
+.co-list .map-link { color: var(--accent-text); font-weight: 700; border-bottom: 1px solid var(--accent); }
+@media (max-width: 880px) { .acc-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .co-list li { grid-template-columns: 1fr; gap: 2px; padding: 11px 4px; } }
+
+/* ============================================================
+   07 CTA — 紺の全幅帯
+   ============================================================ */
+.sec-cta { background: var(--accent); color: rgba(250,250,248,.9); }
+.sec-cta .kicker { color: rgba(250,250,248,.85); }
+.sec-cta .kicker::before { background: rgba(250,250,248,.85); }
+.cta-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 5vw, 64px); align-items: end; }
+.cta-title {
+  font-family: var(--disp); font-weight: 900;
+  font-size: clamp(30px, 4.8vw, 54px);
+  line-height: 1.36; letter-spacing: .01em;
+  color: #FAFAF8;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+.cta-lead { margin-top: 18px; font-size: 14px; max-width: 480px; }
+.cta-box { border: 1px solid rgba(250,250,248,.8); }
+.cta-box__row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(250,250,248,.8);
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em;
+  flex-wrap: wrap;
+}
+.cta-box__row .k { font-size: 10px; letter-spacing: .22em; flex-shrink: 0; }
+.cta-box__btn { padding: 20px; display: grid; gap: 12px; }
+.cta-box__btn .btn { width: 100%; justify-content: center; }
+.btn--ghostlight { background: transparent; border-color: rgba(250,250,248,.8); color: #FAFAF8; }
+.btn--ghostlight:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+@media (max-width: 880px) { .cta-grid { grid-template-columns: 1fr; align-items: start; } }
+
+/* ============================================================
+   フッター
+   ============================================================ */
+.site-footer { background: var(--ink); color: rgba(250,250,248,.8); overflow: hidden; }
+.footer-main {
+  display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px, 6vw, 80px);
+  padding-top: clamp(64px, 9vw, 110px); padding-bottom: clamp(44px, 6vw, 70px);
+}
+.footer-brand .brand__ja { color: #FAFAF8; font-size: 20px; }
+.footer-brand .brand__en { color: rgba(250,250,248,.58); }
+.footer-brand p { margin-top: 16px; font-size: 13px; color: rgba(250,250,248,.6); max-width: 320px; }
+.footer-nav { list-style: none; margin-top: 24px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.footer-nav a { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: rgba(250,250,248,.6); border-bottom: 1px solid transparent; transition: color .3s var(--ease), border-color .3s var(--ease); }
+.footer-nav a:hover { color: #FAFAF8; border-color: rgba(250,250,248,.6); }
+.fo-list { list-style: none; border-top: 1px solid rgba(250,250,248,.4); }
+.fo-list li {
+  display: grid; grid-template-columns: 118px 1fr; gap: 16px;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--line-dark);
+  font-size: 13px;
+}
+.fo-list .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: rgba(250,250,248,.58); padding-top: 5px; text-transform: uppercase; }
+.footer-big {
+  font-family: var(--en); font-weight: 700;
+  font-size: clamp(40px, 10vw, 140px);
+  line-height: 1; letter-spacing: .01em;
+  color: transparent; -webkit-text-stroke: 1px rgba(250,250,248,.22);
+  white-space: nowrap; user-select: none;
+  padding: 0 var(--pad);
+}
+.footer-copy {
+  margin-top: clamp(24px, 4vw, 40px);
+  border-top: 1px solid var(--line-dark);
+  padding-top: 20px; padding-bottom: 26px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+  color: rgba(250,250,248,.58);
+}
+@media (max-width: 700px) { .footer-main { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .fo-list li { grid-template-columns: 1fr; gap: 2px; padding: 11px 4px; } }
+
+/* ---------- reduced motion（必須） ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
 </head>
 <body>
 
-<header class="header" id="header">
-  <a class="header__brand" href="#top">
-    <span class="header__mark">山</span>
-    <span>山田総合法務事務所</span>
-  </a>
-  <nav class="header__nav">
-    <a href="#services">業務内容</a>
-    <a href="#flow">ご相談の流れ</a>
-    <a href="#fees">料金</a>
-    <a href="#profile">事務所案内</a>
-    <a href="#faq">よくある質問</a>
-  </nav>
-  <a class="header__cta" href="#contact">無料相談</a>
-  <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
+<!-- ================= 固定ヘッダー ================= -->
+<header class="site-header">
+  <div class="site-header__in">
+    <a class="brand" href="#top" aria-label="山田総合法務事務所 トップへ">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__ja">山田総合法務事務所</span>
+      <span class="brand__en">YAMADA LEGAL OFFICE</span>
+    </a>
+    <nav class="gnav" aria-label="グローバルナビゲーション">
+      <a href="#services"><span class="num">01</span>業務内容</a>
+      <a href="#fees"><span class="num">02</span>料金</a>
+      <a href="#profile"><span class="num">03</span>代表</a>
+      <a href="#flow"><span class="num">04</span>流れ</a>
+      <a href="#faq"><span class="num">05</span>FAQ</a>
+      <a href="#access"><span class="num">06</span>アクセス</a>
+      <a class="btn btn--fill" href="#contact">無料相談 <span class="arw" aria-hidden="true">&#8599;</span></a>
+    </nav>
+  </div>
 </header>
-
-<nav class="drawer" id="drawer">
-  <a href="#services">業務内容</a>
-  <a href="#flow">ご相談の流れ</a>
-  <a href="#fees">料金</a>
-  <a href="#profile">事務所案内</a>
-  <a href="#faq">よくある質問</a>
-  <a class="drawer__cta" href="#contact">無料相談する →</a>
-</nav>
 
 <main id="top">
 
-<!-- HERO -->
+<!-- ================= ヒーロー ================= -->
 <section class="hero">
-  <div class="hero__inner">
-    <p class="hero__kicker">GYOSEI SHOSHI ・ ZEIRISHI ・ SHIHO SHOSHI</p>
-    <h1 class="hero__title">手続きの、その先の<br>安心まで。</h1>
-    <p class="hero__lead">
-      法人設立・許認可・税務・相続。<br>
-      暮らしと事業の法務を、ひとつの窓口で。
+  <div class="hero__grid">
+    <div class="hero__left">
+      <p class="kicker">Gyosei / Zeirishi / Shiho-Shoshi</p>
+      <h1 class="hero__title">
+        <span class="ht-line">手続きの、その先の</span>
+        <span class="ht-line">安心まで。</span>
+      </h1>
+      <p class="hero__lead">法人設立・許認可・税務・相続・登記。行政書士・税理士・司法書士の三士業が、暮らしと事業の法務をひとつの窓口でお引き受けします。</p>
+      <div class="hero__actions">
+        <a class="btn btn--fill" href="reservation.html">無料相談を予約する <span class="arw" aria-hidden="true">&#8599;</span></a>
+        <a class="btn btn--line" href="#services">業務内容を見る</a>
+      </div>
+    </div>
+    <div class="hero__right">
+      <figure class="hero__photo">
+        <img src="images/hero-background.jpg" alt="山田総合法務事務所が入るオフィスビルの外観" width="1280" height="960" fetchpriority="high">
+        <p class="hero__plate"><span>Yamada Legal Office</span><span>Chiyoda, Tokyo</span></p>
+      </figure>
+      <div class="hero__figindex">
+        <span><span class="fig-no">FIG.01</span> — OFFICE BUILDING</span>
+        <span>EST. 2004 / CONSULT 5,000+</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero__strip" aria-label="選ばれる理由">
+    <div><span class="k">One-Stop</span>三士業連携。窓口も責任も、ひとつ。</div>
+    <div><span class="k">Price First</span>費用は着手前に、必ず書面で。</div>
+    <div><span class="k">Plain Words</span>専門用語を使わずにご報告。</div>
+  </div>
+</section>
+
+<!-- ================= 01 業務内容 ================= -->
+<section class="section wrap" id="services">
+  <div class="section__head reveal">
+    <p class="kicker">01 — Services</p>
+    <h2 class="sec-title">暮らしと事業の法務を、<br class="sp">まとめて。</h2>
+    <p class="sec-lead">「どこに相談すればいいか分からない」手続きこそ、お持ちください。行政書士・税理士・司法書士が社内で連携し、窓口をたらい回しにせず最後まで対応します。</p>
+  </div>
+  <div class="svc-grid">
+    <article class="svc reveal" style="--d:0s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">01</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><path d="M8 36 v-22 h12 v22"/><path d="M20 36 v-14 h14 v14"/><path d="M4 36 h34"/><path class="acc" d="M12 19 h4 M12 25 h4 M12 31 h4 M26 27 h4 M26 32 h4"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Incorporation</span>
+      <h3 class="svc__title">法人設立・会社設立</h3>
+      <p class="svc__text">定款の作成・認証から設立登記、設立後の税務届出まで。三士業がそろう事務所だから、設立の全工程がひとつの依頼で終わります。</p>
+      <p class="svc__spec"><span>対応範囲</span><span class="val">定款 &#8594; 登記 &#8594; 税務届出</span></p>
+    </article>
+    <article class="svc reveal" style="--d:.07s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">02</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><path d="M10 6 h16 l6 6 v24 h-22 z"/><path d="M26 6 v6 h6"/><path d="M15 20 h12 M15 26 h12"/><path class="acc" d="M14 33 l3 3 6 -7"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Licensing</span>
+      <h3 class="svc__title">許認可申請</h3>
+      <p class="svc__text">建設業・宅建業・飲食業・運送業など、各種許認可の新規取得と更新。期限を台帳で管理し、うっかり失効を防ぎます。</p>
+      <p class="svc__spec"><span>主な分野</span><span class="val">建設・宅建・飲食・運送</span></p>
+    </article>
+    <article class="svc reveal" style="--d:.14s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">03</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><rect x="9" y="5" width="24" height="32"/><path d="M13 10 h16 v6 h-16 z"/><path class="acc" d="M14 22 h2 M20 22 h2 M26 22 h2 M14 28 h2 M20 28 h2 M26 28 h2 M14 33 h2 M20 33 h8"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Tax Advisory</span>
+      <h3 class="svc__title">税務相談・申告</h3>
+      <p class="svc__text">法人・個人の確定申告、記帳指導、節税のご相談まで。数字の根拠を、日常の言葉で説明します。</p>
+      <p class="svc__spec"><span>税務顧問</span><span class="val">月額 &yen;33,000&#8211;</span></p>
+    </article>
+    <article class="svc reveal" style="--d:.21s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">04</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><path d="M12 8 h14 l5 5 v21 h-19 z"/><path d="M26 8 v5 h5"/><path d="M17 18 h9 M17 23 h9 M17 28 h5"/><circle class="acc" cx="28" cy="30" r="5"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Inheritance &amp; Wills</span>
+      <h3 class="svc__title">相続・遺言</h3>
+      <p class="svc__text">遺言書の作成支援、相続人調査、遺産分割協議書の作成から相続税の申告まで。ご家族の節目を、まるごと支えます。</p>
+      <p class="svc__spec"><span>対応範囲</span><span class="val">遺言 &#8594; 協議書 &#8594; 申告</span></p>
+    </article>
+    <article class="svc reveal" style="--d:.28s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">05</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><path d="M7 20 L21 8 L35 20"/><path d="M11 20 v16 h20 v-16"/><path class="acc" d="M17 36 v-9 h8 v9"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Real Estate Registry</span>
+      <h3 class="svc__title">不動産登記</h3>
+      <p class="svc__text">売買・相続・贈与にともなう所有権移転、抵当権の設定・抹消。司法書士が法務局への申請まで代行します。</p>
+      <p class="svc__spec"><span>対応</span><span class="val">移転・設定・抹消</span></p>
+    </article>
+    <article class="svc reveal" style="--d:.35s">
+      <div class="svc__top">
+        <span class="svc__no" aria-hidden="true">06</span>
+        <span class="svc__icon" aria-hidden="true">
+          <svg viewBox="0 0 42 42"><path d="M9 6 h24 v30 h-24 z"/><path d="M14 13 h14 M14 18 h14 M14 23 h9"/><path class="acc" d="M22 34 l12 -12 3 3 -12 12 h-3 z"/></svg>
+        </span>
+      </div>
+      <span class="en-label svc__en">Contracts</span>
+      <h3 class="svc__title">契約書作成</h3>
+      <p class="svc__text">取引基本契約・業務委託・賃貸借など、各種契約書の作成とチェック。取引の実態に合わせて条文を設計します。</p>
+      <p class="svc__spec"><span>チェックのみ</span><span class="val">&yen;16,500&#8211;</span></p>
+    </article>
+  </div>
+  <figure class="ph svc-photo reveal">
+    <div class="ph__img">
+      <img src="images/dna/desk-documents.jpg" alt="打ち合わせで書類を確認する手元" width="1600" height="1068" loading="lazy">
+    </div>
+    <figcaption class="ph__cap"><span><span class="fig-no">FIG.02</span> — CONSULTATION</span><span>PHOTO: UNSPLASH (SAMPLE)</span></figcaption>
+  </figure>
+  <a class="more" href="services.html">業務内容の詳細ページへ <span class="arw" aria-hidden="true">&#8599;</span></a>
+</section>
+
+<!-- ================= 02 料金の目安 ================= -->
+<section class="sec-fee" id="fees">
+  <div class="section wrap">
+    <div class="section__head reveal">
+      <p class="kicker">02 — Fee Guide</p>
+      <h2 class="sec-title">料金の目安</h2>
+      <p class="sec-lead">主な手続きの報酬の目安です。着手前に必ず書面でお見積もりを提示し、追加費用が生じる場合は作業の前に理由とともにご説明します。</p>
+    </div>
+    <div class="fee-scroll reveal">
+      <div class="fee" role="table" aria-label="主な手続きと料金の目安">
+        <div class="fee__row fee__row--head" role="row">
+          <span role="columnheader">手続き / Service</span>
+          <span role="columnheader">担当</span>
+          <span role="columnheader">料金（税込）</span>
+          <span role="columnheader">備考 / Note</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">初回相談（60分）<span class="en-label">First Consultation</span></span>
+          <span class="fee__who" role="cell">三士業</span>
+          <span class="fee__price" role="cell"><span class="ja">無料</span></span>
+          <span class="fee__note" role="cell">オンライン相談も可</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">株式会社設立<span class="en-label">Incorporation</span></span>
+          <span class="fee__who" role="cell">行政書士</span>
+          <span class="fee__price" role="cell">&yen;88,000&#8211;</span>
+          <span class="fee__note" role="cell">定款認証・登録免許税 別途</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">建設業許可（新規）<span class="en-label">Const. License / New</span></span>
+          <span class="fee__who" role="cell">行政書士</span>
+          <span class="fee__price" role="cell">&yen;165,000&#8211;</span>
+          <span class="fee__note" role="cell">申請手数料 別途／更新 &yen;77,000&#8211;</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">契約書作成<span class="en-label">Contract Drafting</span></span>
+          <span class="fee__who" role="cell">行政書士</span>
+          <span class="fee__price" role="cell">&yen;33,000&#8211;</span>
+          <span class="fee__note" role="cell">チェックのみ &yen;16,500&#8211;</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">確定申告（事業所得）<span class="en-label">Tax Return</span></span>
+          <span class="fee__who" role="cell">税理士</span>
+          <span class="fee__price" role="cell">&yen;55,000&#8211;</span>
+          <span class="fee__note" role="cell">青色申告対応</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">相続税申告<span class="en-label">Inheritance Tax</span></span>
+          <span class="fee__who" role="cell">税理士</span>
+          <span class="fee__price" role="cell"><span class="ja">遺産総額の</span>0.5&#8211;1%</span>
+          <span class="fee__note" role="cell">最低料金 &yen;330,000</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">所有権移転登記（相続）<span class="en-label">Registry Transfer</span></span>
+          <span class="fee__who" role="cell">司法書士</span>
+          <span class="fee__price" role="cell">&yen;66,000&#8211;</span>
+          <span class="fee__note" role="cell">登録免許税 別途</span>
+        </div>
+        <div class="fee__row" role="row">
+          <span class="fee__name" role="cell">公正証書遺言 作成支援<span class="en-label">Notarized Will</span></span>
+          <span class="fee__who" role="cell">司法書士</span>
+          <span class="fee__price" role="cell">&yen;88,000&#8211;</span>
+          <span class="fee__note" role="cell">公証人手数料 別途</span>
+        </div>
+      </div>
+    </div>
+    <p class="fee-foot reveal">
+      <span>&#9636; 登録免許税・印紙代などの実費は別途申し受けます。</span>
+      <span>&#9636; 正式な費用は、ご相談内容を伺ったうえで事前のお見積もりでご提示します。</span>
     </p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#contact">無料相談を予約する</a>
-      <a class="btn btn--ghost" href="#services">業務内容を見る</a>
+    <a class="more reveal" href="pricing.html">料金表の全文を見る <span class="arw" aria-hidden="true">&#8599;</span></a>
+  </div>
+</section>
+
+<!-- ================= 03 代表プロフィール ================= -->
+<section class="section wrap" id="profile">
+  <div class="section__head reveal">
+    <p class="kicker">03 — Profile</p>
+    <h2 class="sec-title">代表プロフィール</h2>
+  </div>
+  <div class="prof-grid">
+    <div class="prof-photo reveal">
+      <figure class="ph">
+        <img src="images/profile-photo.jpg" alt="代表 山田太郎の肖像写真" width="960" height="1280" loading="lazy">
+        <figcaption class="ph__cap"><span><span class="fig-no">FIG.03</span> — REPRESENTATIVE</span></figcaption>
+      </figure>
+      <p class="prof-name">山田 太郎<span class="en">Taro Yamada</span></p>
     </div>
-    <dl class="hero__facts">
-      <div><dt>開業</dt><dd>2008年</dd></div>
-      <div><dt>相談実績</dt><dd>3,200件超</dd></div>
-      <div><dt>初回相談</dt><dd>無料</dd></div>
-    </dl>
-  </div>
-  <div class="hero__photo">
-    <img src="images/office-exterior.jpg" alt="事務所の外観">
-  </div>
-</section>
-
-<!-- 選ばれる理由 -->
-<section class="section">
-  <p class="sec-label">REASON</p>
-  <h2 class="sec-title">選ばれる理由</h2>
-  <div class="reasons">
-    <article class="reason reveal">
-      <span class="reason__num">01</span>
-      <h3>三士業のワンストップ</h3>
-      <p>行政書士・税理士・司法書士が連携。窓口をたらい回しにせず、ひとつの相談で最後まで対応します。</p>
-    </article>
-    <article class="reason reveal">
-      <span class="reason__num">02</span>
-      <h3>費用は、はじめに明確に</h3>
-      <p>着手前に必ずお見積もりを提示します。追加費用が発生する場合は、作業前に理由とともにご説明します。</p>
-    </article>
-    <article class="reason reveal">
-      <span class="reason__num">03</span>
-      <h3>専門用語を使いません</h3>
-      <p>手続きの内容と進み具合を、日常の言葉でご報告。「いま何が起きているか」が常に分かります。</p>
-    </article>
-  </div>
-</section>
-
-<!-- 業務内容 -->
-<section class="section section--tint" id="services">
-  <p class="sec-label">SERVICES</p>
-  <h2 class="sec-title">主な業務内容</h2>
-  <div class="services">
-    <article class="svc reveal"><h3>法人設立・会社設立</h3><p>定款作成から登記、設立後の税務届出までまとめて対応します。</p></article>
-    <article class="svc reveal"><h3>許認可申請</h3><p>建設業・宅建業・飲食業・運送業など、各種許認可の取得と更新。</p></article>
-    <article class="svc reveal"><h3>税務相談・申告</h3><p>法人・個人の確定申告、記帳指導、節税のご相談まで。</p></article>
-    <article class="svc reveal"><h3>相続・遺言</h3><p>遺言書の作成支援、相続手続き、遺産分割協議書の作成。</p></article>
-    <article class="svc reveal"><h3>不動産登記</h3><p>売買・相続・贈与にともなう所有権移転、抵当権の設定・抹消。</p></article>
-    <article class="svc reveal"><h3>契約書作成</h3><p>取引基本契約・業務委託・賃貸借など、各種契約書の作成とチェック。</p></article>
-  </div>
-</section>
-
-<!-- 流れ -->
-<section class="section" id="flow">
-  <p class="sec-label">FLOW</p>
-  <h2 class="sec-title">ご相談の流れ</h2>
-  <ol class="flow">
-    <li class="reveal"><span>1</span><div><h3>お問い合わせ</h3><p>電話・フォームからご連絡ください。初回相談は無料です。</p></div></li>
-    <li class="reveal"><span>2</span><div><h3>ヒアリング・お見積もり</h3><p>状況をうかがい、必要な手続きと費用を書面でご提示します。</p></div></li>
-    <li class="reveal"><span>3</span><div><h3>ご契約・着手</h3><p>内容にご納得いただいてから着手。進捗は随時ご報告します。</p></div></li>
-    <li class="reveal"><span>4</span><div><h3>完了・お引き渡し</h3><p>完了書類一式をお渡しし、その後のご相談も継続して承ります。</p></div></li>
-  </ol>
-</section>
-
-<!-- 料金 -->
-<section class="section section--tint" id="fees">
-  <p class="sec-label">FEES</p>
-  <h2 class="sec-title">料金の目安</h2>
-  <table class="fees reveal">
-    <tbody>
-      <tr><th>初回相談（60分）</th><td>無料</td></tr>
-      <tr><th>会社設立（株式会社）</th><td>110,000円〜</td></tr>
-      <tr><th>建設業許可（新規・知事）</th><td>132,000円〜</td></tr>
-      <tr><th>相続手続き一式</th><td>165,000円〜</td></tr>
-      <tr><th>遺言書作成支援</th><td>66,000円〜</td></tr>
-      <tr><th>契約書作成・チェック</th><td>33,000円〜</td></tr>
-    </tbody>
-  </table>
-  <p class="fees__note">※表示はすべて税込です。実費（登録免許税・証紙代等）が別途かかります。正式な費用は事前のお見積もりでご提示します。</p>
-</section>
-
-<!-- 事務所案内 -->
-<section class="section" id="profile">
-  <p class="sec-label">PROFILE</p>
-  <h2 class="sec-title">事務所案内</h2>
-  <div class="profile">
-    <div class="profile__photo reveal">
-      <img src="images/profile-photo.jpg" alt="代表 山田太郎">
-      <p class="profile__caption">代表・行政書士　山田 太郎</p>
-    </div>
-    <div class="profile__body reveal">
-      <p class="profile__msg">「手続きが終わったら関係も終わり」ではなく、事業と暮らしの節目ごとに頼っていただける事務所でありたいと考えています。どんな小さなことでも、まずはお話しください。</p>
-      <dl class="profile__facts">
-        <div><dt>事務所名</dt><dd>山田総合法務事務所</dd></div>
-        <div><dt>所属</dt><dd>行政書士会／税理士会／司法書士会</dd></div>
-        <div><dt>営業時間</dt><dd>平日 9:00–18:00（土曜は予約制）</dd></div>
-        <div><dt>所在地</dt><dd>〒000-0000 ○○県○○市○○町1-2-3</dd></div>
-      </dl>
+    <div class="reveal" style="--d:.1s">
+      <p class="prof-msg">「手続きが終わったら関係も終わり」ではなく、事業と暮らしの節目ごとに頼っていただける事務所でありたい——そう考えて、2004年にこの事務所を開きました。</p>
+      <p class="prof-msg">行政書士・税理士・司法書士の3つの資格を活かし、複数の専門家を回らなくても済むワンストップの体制を整えています。手続きの内容と進み具合は、専門用語を使わず日常の言葉でご報告します。どんな小さなことでも、まずはお話しください。</p>
+      <div class="quals" aria-label="保有資格">
+        <span class="qual">行政書士<span class="en-label">2000&#8211;</span></span>
+        <span class="qual">税理士<span class="en-label">2002&#8211;</span></span>
+        <span class="qual">司法書士<span class="en-label">2004&#8211;</span></span>
+      </div>
+      <ul class="bio">
+        <li><span class="yr">1995</span><span>東京大学法学部 卒業／大手法律事務所 入所</span></li>
+        <li><span class="yr">2000</span><span>大手税理士法人 入所</span></li>
+        <li><span class="yr">2004</span><span>山田総合法務事務所 開業</span></li>
+        <li><span class="yr">2010</span><span>東京司法書士会 理事 就任</span></li>
+        <li><span class="yr">2015</span><span>東京税理士会 研修講師</span></li>
+      </ul>
+      <a class="more" href="profile.html">経歴・実績の詳細へ <span class="arw" aria-hidden="true">&#8599;</span></a>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section section--tint" id="faq">
-  <p class="sec-label">FAQ</p>
-  <h2 class="sec-title">よくある質問</h2>
-  <div class="faqs">
-    <details class="faq reveal">
-      <summary>何を相談すればいいか分からないのですが…</summary>
-      <p>それで大丈夫です。状況をうかがって、必要な手続きとどの専門家が担当するかをこちらで整理します。</p>
-    </details>
-    <details class="faq reveal">
-      <summary>土日や夜間の相談はできますか？</summary>
-      <p>土曜は予約制で承っています。平日夜間もご事情に応じて調整しますので、ご相談ください。</p>
-    </details>
-    <details class="faq reveal">
-      <summary>費用が途中で増えることはありませんか？</summary>
-      <p>着手前のお見積もりが原則です。追加が必要になる場合は、必ず作業前にご説明し、ご了承をいただいてから進めます。</p>
-    </details>
-    <details class="faq reveal">
-      <summary>オンラインでの相談は可能ですか？</summary>
-      <p>可能です。ビデオ通話・お電話でのご相談に対応しています。</p>
-    </details>
+<!-- ================= 04 ご相談の流れ ================= -->
+<section class="section wrap" id="flow">
+  <div class="flow-grid">
+    <div class="flow-left reveal">
+      <p class="kicker">04 — Process</p>
+      <h2 class="sec-title">ご相談の流れ</h2>
+      <p class="sec-lead">「いま何が起きているか」が常に分かるように進めます。ご納得いただく前に、費用が発生することはありません。</p>
+      <figure class="ph">
+        <div class="ph__img">
+          <img src="images/dna/signing-document.jpg" alt="契約書類に署名する手元" width="1600" height="1068" loading="lazy">
+        </div>
+        <figcaption class="ph__cap"><span><span class="fig-no">FIG.04</span> — AGREEMENT</span><span>PHOTO: UNSPLASH (SAMPLE)</span></figcaption>
+      </figure>
+    </div>
+    <div class="flow reveal" style="--d:.1s">
+      <div class="flow__row">
+        <span class="flow__no"><span class="lbl">STEP</span>01</span>
+        <div>
+          <h3 class="flow__title">お問い合わせ</h3>
+          <p class="flow__text">お電話・フォームからご連絡ください。初回相談は60分まで無料。オンラインでのご相談にも対応しています。</p>
+        </div>
+      </div>
+      <div class="flow__row">
+        <span class="flow__no"><span class="lbl">STEP</span>02</span>
+        <div>
+          <h3 class="flow__title">ヒアリング・お見積もり</h3>
+          <p class="flow__text">状況をうかがい、必要な手続きとどの士業が担当するかを整理して、費用を書面でご提示します。</p>
+        </div>
+      </div>
+      <div class="flow__row">
+        <span class="flow__no"><span class="lbl">STEP</span>03</span>
+        <div>
+          <h3 class="flow__title">ご契約・着手</h3>
+          <p class="flow__text">内容にご納得いただいてから着手します。進捗は随時、日常の言葉でご報告します。</p>
+        </div>
+      </div>
+      <div class="flow__row">
+        <span class="flow__no"><span class="lbl">STEP</span>04</span>
+        <div>
+          <h3 class="flow__title">完了・お引き渡し</h3>
+          <p class="flow__text">完了書類一式をお渡しして終了です。その後のご相談も、継続して承ります。</p>
+        </div>
+      </div>
+      <a class="more" href="reservation.html">相談日を予約する <span class="arw" aria-hidden="true">&#8599;</span></a>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <h2 class="cta__title">まずは、無料相談から。</h2>
-  <p class="cta__lead">どの手続きが必要か分からない段階で構いません。<br>状況を整理するところから、一緒にはじめましょう。</p>
-  <div class="cta__actions">
-    <a class="btn btn--light" href="tel:0000000000">☎ 00-0000-0000</a>
-    <a class="btn btn--gold" href="mailto:info@example.jp">メールで相談する →</a>
+<!-- ================= 05 よくある質問 ================= -->
+<section class="sec-faq" id="faq">
+  <div class="section wrap">
+    <div class="section__head reveal">
+      <p class="kicker">05 — FAQ</p>
+      <h2 class="sec-title">よくある質問</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary><span class="q">Q1</span><span class="qt">何を相談すればいいか分からないのですが…</span><span class="sign" aria-hidden="true">+</span></summary>
+        <p class="faq__a">それで大丈夫です。状況をうかがって、必要な手続きとどの専門家が担当するかをこちらで整理します。「相談することの整理」から、私たちの仕事です。</p>
+      </details>
+      <details>
+        <summary><span class="q">Q2</span><span class="qt">土日や夜間の相談はできますか？</span><span class="sign" aria-hidden="true">+</span></summary>
+        <p class="faq__a">土曜は10:00〜15:00で予約制にて承っています。平日夜間もご事情に応じて調整しますので、まずはご相談ください。</p>
+      </details>
+      <details>
+        <summary><span class="q">Q3</span><span class="qt">費用が途中で増えることはありませんか？</span><span class="sign" aria-hidden="true">+</span></summary>
+        <p class="faq__a">着手前のお見積もりが原則です。追加が必要になる場合は、必ず作業前に理由をご説明し、ご了承をいただいてから進めます。</p>
+      </details>
+      <details>
+        <summary><span class="q">Q4</span><span class="qt">オンラインでの相談は可能ですか？</span><span class="sign" aria-hidden="true">+</span></summary>
+        <p class="faq__a">可能です。ビデオ通話・お電話でのご相談に対応しています。遠方の方や、お仕事の合間に相談したい方もお気軽にどうぞ。</p>
+      </details>
+    </div>
+    <a class="more reveal" href="faq.html">質問の一覧を見る <span class="arw" aria-hidden="true">&#8599;</span></a>
   </div>
-  <p class="cta__hours">受付：平日 9:00–18:00／土曜 予約制</p>
+</section>
+
+<!-- ================= 06 アクセス ================= -->
+<section class="section wrap" id="access">
+  <div class="section__head reveal">
+    <p class="kicker">06 — Access</p>
+    <h2 class="sec-title">アクセス・事務所概要</h2>
+  </div>
+  <div class="acc-grid">
+    <figure class="ph acc-photo reveal">
+      <div class="ph__img">
+        <img src="images/access-map.jpg" alt="山田総合法務事務所の応接スペースのイメージ" width="1472" height="832" loading="lazy">
+      </div>
+      <figcaption class="ph__cap"><span><span class="fig-no">FIG.05</span> — MEETING SPACE</span><span>IMAGE</span></figcaption>
+    </figure>
+    <div class="reveal" style="--d:.1s">
+      <ul class="co-list">
+        <li><span class="k">Office</span><span>山田総合法務事務所</span></li>
+        <li><span class="k">Address</span><span>〒100-0001 東京都千代田区千代田1-1-1 山田ビル5階</span></li>
+        <li><span class="k">Station</span><span>JR東京駅 徒歩5分／地下鉄大手町駅 徒歩3分　<a class="map-link" href="https://maps.google.com/?q=東京都千代田区千代田1-1-1" target="_blank" rel="noopener">地図を開く &#8599;</a></span></li>
+        <li><span class="k">Tel / Fax</span><span>TEL 03-1234-5678／FAX 03-1234-5679</span></li>
+        <li><span class="k">Hours</span><span>平日 9:00&#8211;18:00／土曜 10:00&#8211;15:00（要予約）／日祝 休業</span></li>
+        <li><span class="k">Member</span><span>行政書士会／税理士会／司法書士会 所属</span></li>
+      </ul>
+      <a class="more" href="contact.html">お問い合わせページへ <span class="arw" aria-hidden="true">&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 CTA ================= -->
+<section class="sec-cta" id="contact">
+  <div class="section wrap">
+    <div class="cta-grid">
+      <div class="reveal">
+        <p class="kicker">07 — Contact</p>
+        <h2 class="cta-title">まずは、<br>無料相談から。</h2>
+        <p class="cta-lead">どの手続きが必要か分からない段階で構いません。状況を整理するところから、一緒にはじめましょう。初回相談は60分まで無料です。</p>
+      </div>
+      <div class="cta-box reveal" style="--d:.1s">
+        <div class="cta-box__row"><span class="k">TEL</span><span>03-1234-5678（平日 9:00&#8211;18:00）</span></div>
+        <div class="cta-box__row"><span class="k">MAIL</span><span>info@yamada-law.jp</span></div>
+        <div class="cta-box__row"><span class="k">HOURS</span><span>土曜 10:00&#8211;15:00（要予約）</span></div>
+        <div class="cta-box__btn">
+          <a class="btn btn--paper" href="contact.html">フォームで相談する <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="btn btn--ghostlight" href="reservation.html">相談日を予約する <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 </main>
 
-<footer class="footer">
-  <p class="footer__name">山田総合法務事務所</p>
-  <p class="footer__addr">〒000-0000 ○○県○○市○○町1-2-3　TEL 00-0000-0000</p>
-  <p class="footer__copy">© Yamada Legal Office. <span class="footer__demo">このサイトは架空の事務所のデザインサンプルです</span></p>
+<!-- ================= フッター ================= -->
+<footer class="site-footer">
+  <div class="wrap footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__ja">山田総合法務事務所</span>
+      </a>
+      <span class="brand__en">YAMADA LEGAL OFFICE</span>
+      <p>法人設立・許認可・税務・相続・登記。行政書士・税理士・司法書士が、暮らしと事業の法務をひとつの窓口で。</p>
+      <ul class="footer-nav" aria-label="サイト内ページ">
+        <li><a href="services.html">SERVICES</a></li>
+        <li><a href="pricing.html">PRICING</a></li>
+        <li><a href="profile.html">PROFILE</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="reservation.html">RESERVE</a></li>
+      </ul>
+    </div>
+    <ul class="fo-list">
+      <li><span class="k">Office</span><span>山田総合法務事務所（架空・デザインサンプル）</span></li>
+      <li><span class="k">Founded</span><span>2004年</span></li>
+      <li><span class="k">Address</span><span>〒100-0001 東京都千代田区千代田1-1-1 山田ビル5階（架空の住所です）</span></li>
+      <li><span class="k">Tel</span><span>03-1234-5678（架空）</span></li>
+      <li><span class="k">Hours</span><span>平日 9:00&#8211;18:00／土曜 10:00&#8211;15:00（要予約）</span></li>
+      <li><span class="k">Member</span><span>行政書士会／税理士会／司法書士会（架空表記）</span></li>
+    </ul>
+  </div>
+  <p class="footer-big" aria-hidden="true">YAMADA LEGAL</p>
+  <div class="wrap">
+    <div class="footer-copy">
+      <span>&copy; 2026 YAMADA LEGAL OFFICE</span>
+      <span>THIS PAGE IS A DESIGN SAMPLE — COCORO AI LLC / DESIGN DNA KIT, RECIPE 02</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-// モバイルメニューとスクロール表示だけの最小JS
-(function () {
-  var btn = document.getElementById("menuBtn");
-  var drawer = document.getElementById("drawer");
-  btn.addEventListener("click", function () {
-    var open = drawer.classList.toggle("open");
-    btn.setAttribute("aria-expanded", String(open));
-  });
-  drawer.addEventListener("click", function (e) {
-    if (e.target.tagName === "A") {
-      drawer.classList.remove("open");
-      btn.setAttribute("aria-expanded", "false");
-    }
-  });
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-})();
+// ---------- スクロールリビール（最小JS） ----------
+const io = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+  { threshold: .15 }
+);
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
